@@ -44,6 +44,7 @@ def run_multiple_spiders(websites, file_name):
                                item_rules_json=site["scraping_rules"],
                                search_keyword=site["search_keyword"],
                                file_name=file_name,
+                               max_pagination=site["max_pagination"],
                                pagination_urls=site["pagination_urls"])
 
         reactor.stop()
@@ -162,6 +163,9 @@ def receive_scraping_rules():
 
     websites = request.get_json()
     file_name = 'output.json'
+    for site in websites:
+        site["max_pagination"] = site.get("max_pagination", 2)
+
     restart_scraper(websites, file_name)
     #wait_for_file()
     #process_data()
