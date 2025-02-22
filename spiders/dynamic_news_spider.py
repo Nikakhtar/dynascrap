@@ -5,7 +5,7 @@ import json
 class DynamicNewsSpider(scrapy.Spider):
     name = "dynascrap_news"
 
-    def __init__(self, website_url, list_rules_json, item_rules_json, search_keyword, file_name, pagination_urls=None, *args, **kwargs):
+    def __init__(self, website_url, list_rules_json, item_rules_json, search_keyword, file_name, max_pagination, pagination_urls=None, *args, **kwargs):
         super(DynamicNewsSpider, self).__init__(*args, **kwargs)
         self.website_url = website_url
         self.search_keyword = search_keyword
@@ -14,6 +14,8 @@ class DynamicNewsSpider(scrapy.Spider):
         self.list_rules = list_rules_json if isinstance(list_rules_json, dict) else json.loads(list_rules_json)
         self.item_rules = item_rules_json if isinstance(item_rules_json, dict) else json.loads(item_rules_json)
         self.start_urls = [website_url] + (pagination_urls or [])
+        self.max_pagination = max_pagination
+        self.page_count = 0
         self.file_name = file_name  # Unique filename for each website
 
     # Scrapy will save output in this file
@@ -24,6 +26,12 @@ class DynamicNewsSpider(scrapy.Spider):
         'LOG_ENABLED': True  # Enable logging for debugging
     }
     def parse(self, response):
+
+        if self.page_count >= self.max_pagination:
+            self.log(f"Reached max pagination limit ({self.max_pagination}) for {self.website_url}. Stopping!")
+            return
+
+        self.page_count += 1
 
         # First, scrape the listing page to extract article URLs
         article_links = response.css(self.list_rules["item_url"]).getall()
