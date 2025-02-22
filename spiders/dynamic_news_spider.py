@@ -55,7 +55,8 @@ class DynamicNewsSpider(scrapy.Spider):
     def parse_item(self, response):
         item = {}
         for key, selector in self.item_rules.items():
-            item[key] = response.css(selector).get()
+            #item[key] = response.css(selector).get()
+            item[key] = " ".join(response.css(selector).getall()).strip()
 
         item['article_url'] = response.url
         yield item
