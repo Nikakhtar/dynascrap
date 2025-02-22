@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "d9a9f934-6359-4673-88bc-28071800725c",
+		"name": "dynascrap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36544119"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:5000/scrape",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"website_url\": \"https://books.toscrape.com/catalogue/page-1.html\",\r\n        \"scraping_rules\": {\r\n            \"item_url\": \"article h3 a::attr(href)\",\r\n            \"next_page_url\": \"#default > div > div > div > div > section > div:nth-child(2) > div > ul > li.next > a::attr(href)\",\r\n            \"article_title\": \"article h1::text\",\r\n            \"article_content\": \"#content_inner > article > p *::text\",\r\n            \"article_author\": \"#content_inner > article > div.row > div.col-sm-6.product_main > p.price_color\",\r\n            \"article_url\": \"h3 a::attr(href)\"\r\n        },\r\n        \"search_keyword\": \"mystery\",\r\n        \"pagination_urls\": [\r\n        ]\r\n    },\r\n    {\r\n        \"website_url\": \"https://books.toscrape.com/catalogue/page-1.html\",\r\n        \"scraping_rules\": {\r\n            \"item_url\": \"article h3 a::attr(href)\",\r\n            \"next_page_url\": \"#default > div > div > div > div > section > div:nth-child(2) > div > ul > li.next > a::attr(href)\",\r\n            \"article_title\": \"article h1::text\",\r\n            \"article_content\": \"#content_inner > article > p *::text\",\r\n            \"article_author\": \"#content_inner > article > div.row > div.col-sm-6.product_main > p.price_color\",\r\n            \"article_url\": \"h3 a::attr(href)\"\r\n        },\r\n        \"search_keyword\": \"mystery\",\r\n        \"pagination_urls\": [\r\n        ]\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/scrape",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/scrape",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"website_url\": \"https://www.khabaronline.ir/page/archive.xhtml?mn=12&wide=0&dy=4&ms=0&pi=1&yr=1403\",\r\n        \"scraping_rules\": {\r\n            \"item_url\": \"#box202 > div > ul > li > div > h3 > a::attr(href)\",\r\n            \"next_page_url\": \"#box202 > footer > div > ul > li > a::attr(href)\",\r\n            \"article_title\": \"#item > div.item-header > div.item-title > h1 > a::text\",\r\n            \"article_content\": \"#item > div.item-body > div.item-text > p::text\",\r\n            \"article_author\": \"#item > div.item-footer.row > div:nth-child(2) > div > div > input::text\",\r\n            \"article_url\": \"h3 a::attr(href)\"\r\n        },\r\n        \"search_keyword\": \"mystery\",\r\n        \"pagination_urls\": [\r\n        ]\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/scrape",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
