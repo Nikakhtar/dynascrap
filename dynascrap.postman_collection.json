@@ -73,6 +73,40 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/scrape",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"website_url\": \"https://sibitec.ir/news\",\r\n        \"scraping_rules\": {\r\n            \"item_url\": \"a.css-4q4fx1::attr(href)\",\r\n            \"next_page_url\": \"\",\r\n            \"article_title\": \"h1::text\",\r\n            \"article_content\": \"h6::text\",\r\n            \"article_author\": \"\",\r\n            \"article_url\": \"\"\r\n        },\r\n        \"search_keyword\": \"mystery\",\r\n        \"pagination_urls\": [\r\n        ],\r\n        \"max_pagination\": 10\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/scrape",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"scrape"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
