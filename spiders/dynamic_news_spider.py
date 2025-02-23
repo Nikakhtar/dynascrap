@@ -23,7 +23,8 @@ class DynamicNewsSpider(scrapy.Spider):
         'FEEDS': {
             'output.json': {'format': 'json', 'encoding': 'utf8'}
         },
-        'LOG_ENABLED': True  # Enable logging for debugging
+        'LOG_ENABLED': True,
+        'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
     }
     def parse(self, response):
 
