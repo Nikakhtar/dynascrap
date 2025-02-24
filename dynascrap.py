@@ -30,6 +30,11 @@ def run_multiple_spiders(websites, file_name):
     settings = get_project_settings()
     runner = CrawlerRunner(settings)
 
+    # ✅ Step 1: Delete old `output.json` if it exists
+    if os.path.exists(file_name):
+        print(f"Deleting old {file_name} before starting new Scrapy process...")
+        os.remove(file_name)
+
     @defer.inlineCallbacks
     def crawl(websites, file_name):
         for site in websites:
